@@ -57,7 +57,7 @@ const telegram_bot = async () => {
         ctx.replyWithDocument({source: './csv/' + fileName})
     })
 
-    cron.schedule('00 12 * * *', async () => {
+    cron.schedule(process.env.CRON_SCHEDULE, async () => {
         let today = new Date();
         let fileName = `stakers-${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}.csv`
         await generate_csv(fileName)
